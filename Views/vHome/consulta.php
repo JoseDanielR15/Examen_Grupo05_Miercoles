@@ -49,7 +49,7 @@ $data = $model->ConsultarCasas();
         <?php if($row["Estado"] == "Disponible") { ?>
             <span class="badge bg-success">Disponible</span>
         <?php } else { ?>
-            <span class="badge bg-danger">Reservada</span>
+            <span class="badge bg-warning">Reservado</span>
         <?php } ?>
     </td>
     <td><?= $row["Fecha"] ?? "-" ?></td>

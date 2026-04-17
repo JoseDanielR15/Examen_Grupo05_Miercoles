@@ -6,15 +6,27 @@ include_once $_SERVER["DOCUMENT_ROOT"] . "/Examen_Grupo05_Miercoles/Models/Casas
 
 $model = new CasasModel();
 
-if(isset($_POST["btnAlquilar"])) {
+if (isset($_POST["btnAlquilar"])) {
 
     $id = $_POST["IdCasa"];
     $usuario = $_POST["Usuario"];
 
-    if($model->Alquilar($id, $usuario)) {
+    if ($model->Alquilar($id, $usuario)) {
         header("Location: /Examen_Grupo05_Miercoles/Views/vHome/consulta.php");
         exit();
     } else {
         echo "Error al alquilar: " . $model->getError();
+    }
+}
+
+if (isset($_POST["btnLiberar"])) {
+
+    $id = $_POST["IdCasa"];
+
+    if ($model->Liberar($id)) {
+        header("Location: /Examen_Grupo05_Miercoles/Views/vHome/consulta.php");
+        exit();
+    } else {
+        echo "Error al liberar: " . $model->getError();
     }
 }

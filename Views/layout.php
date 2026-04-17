@@ -43,8 +43,11 @@ function MostrarHeader()
                 <a href="../vHome/consulta.php" class="btn btn-outline-light me-2">
                     <i class="fas fa-list"></i> Consulta
                 </a>
-                <a href="../vHome/alquiler.php" class="btn btn-primary">
+                <a href="../vHome/alquiler.php" class="btn btn-primary me-2">
                     <i class="fas fa-key"></i> Alquilar
+                </a>
+                <a href="../vHome/eliminar.php" class="btn btn-danger">
+                    <i class="fas fa-trash"></i> Liberar
                 </a>
             </div>
 

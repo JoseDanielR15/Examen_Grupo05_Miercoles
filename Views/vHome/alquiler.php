@@ -3,7 +3,12 @@ include_once $_SERVER["DOCUMENT_ROOT"] . "/Examen_Grupo05_Miercoles/Views/layout
 include_once $_SERVER["DOCUMENT_ROOT"] . "/Examen_Grupo05_Miercoles/Models/CasasModel.php";
 
 $model = new CasasModel();
-$casas = $model->ObtenerDisponibles();
+$casas = $model->ObtenerTodas();
+
+// Verificar conexión
+if (!$casas) {
+    die('Error al obtener casas de la BD');
+}
 ?>
 
 <!DOCTYPE html>
@@ -23,7 +28,7 @@ $casas = $model->ObtenerDisponibles();
 <div class="d-flex justify-content-between align-items-center mb-3">
     <h2>Alquilar Casa</h2>
 
-    <a href="login.php" class="btn btn-secondary">
+    <a href="consulta.php" class="btn btn-secondary">
         <i class="fas fa-arrow-left"></i> Volver
     </a>
 </div>
@@ -33,17 +38,21 @@ $casas = $model->ObtenerDisponibles();
 <div class="mb-3">
     <label>Casa</label>
     <select name="IdCasa" id="IdCasa" class="form-select" onchange="cargarPrecio()">
-        <?php while($row = $casas->fetch_assoc()) { ?>
-            <option value="<?= $row["IdCasa"] ?>" data-precio="<?= $row["PrecioCasa"] ?>">
-                <?= $row["DescripcionCasa"] ?>
+        <option value="">-- Seleccione una casa --</option>
+        <?php 
+        // Obtener datos nuevamente para el select
+        $casas2 = $model->ObtenerTodas();
+        while($row = $casas2->fetch_assoc()) { 
+            $precio = intval($row["PrecioCasa"]);
+            $usuario = $row["UsuarioAlquiler"];
+            $descripcion = htmlspecialchars($row["DescripcionCasa"]);
+            $id = $row["IdCasa"];
+        ?>
+            <option value="<?php echo $id; ?>" data-precio="<?php echo $precio; ?>" data-usuario="<?php echo $usuario; ?>" <?php echo $usuario ? 'disabled' : ''; ?>>
+                <?php echo $descripcion; ?> - ₡<?php echo number_format($precio); ?> (<?php echo $usuario ? 'Reservado' : 'Disponible'; ?>)
             </option>
         <?php } ?>
     </select>
-</div>
-
-<div class="mb-3">
-    <label>Precio</label>
-    <input type="text" id="Precio" class="form-control" readonly>
 </div>
 
 <div class="mb-3">

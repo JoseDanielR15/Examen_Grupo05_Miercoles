@@ -65,11 +65,10 @@ BEGIN
         UsuarioAlquiler,
         CASE 
             WHEN UsuarioAlquiler IS NULL THEN 'Disponible'
-            ELSE 'Reservada'
+            ELSE 'Reservado'
         END AS Estado,
         DATE_FORMAT(FechaAlquiler, '%d/%m/%Y') AS Fecha
     FROM CasasSistema
-    WHERE PrecioCasa BETWEEN 115000 AND 180000
     ORDER BY UsuarioAlquiler IS NOT NULL;
 END ;;
 DELIMITER ;
@@ -96,6 +95,27 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results  = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+
+/*!50003 DROP PROCEDURE IF EXISTS `LiberarCasa` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_ZERO_IN_DATE,NO_ZERO_DATE,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `LiberarCasa`(IN id BIGINT)
+BEGIN
+    UPDATE CasasSistema SET UsuarioAlquiler = NULL, FechaAlquiler = NULL WHERE IdCasa = id;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results  = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
