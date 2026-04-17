@@ -18,26 +18,46 @@ $casas = $model->ObtenerDisponibles();
 
 <div class="container">
 
-<h2>Alquilar Casa</h2>
+<div class="container-box">
 
-<form method="POST" action="/Examen_Grupo05_Miercoles/Controllers/CasasController.php" onsubmit="return validar();">
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h2>Alquilar Casa</h2>
 
-<select name="IdCasa" id="IdCasa" onchange="cargarPrecio()">
-<?php while($row = $casas->fetch_assoc()) { ?>
-    <option value="<?= $row["IdCasa"] ?>" data-precio="<?= $row["PrecioCasa"] ?>">
-        <?= $row["DescripcionCasa"] ?>
-    </option>
-<?php } ?>
-</select>
+    <a href="login.php" class="btn btn-secondary">
+        <i class="fas fa-arrow-left"></i> Volver
+    </a>
+</div>
 
-<input type="text" id="Precio" readonly placeholder="Precio">
+<form method="POST" action="../../Controllers/CasasController.php" onsubmit="return validar();">
 
-<input type="text" name="Usuario" id="Usuario" placeholder="Usuario">
+<div class="mb-3">
+    <label>Casa</label>
+    <select name="IdCasa" id="IdCasa" class="form-select" onchange="cargarPrecio()">
+        <?php while($row = $casas->fetch_assoc()) { ?>
+            <option value="<?= $row["IdCasa"] ?>" data-precio="<?= $row["PrecioCasa"] ?>">
+                <?= $row["DescripcionCasa"] ?>
+            </option>
+        <?php } ?>
+    </select>
+</div>
 
-<button type="submit" name="btnAlquilar">Alquilar</button>
+<div class="mb-3">
+    <label>Precio</label>
+    <input type="text" id="Precio" class="form-control" readonly>
+</div>
+
+<div class="mb-3">
+    <label>Usuario</label>
+    <input type="text" name="Usuario" id="Usuario" class="form-control">
+</div>
+
+<button name="btnAlquilar" class="btn btn-primary w-100">
+    <i class="fas fa-check"></i> Confirmar Alquiler
+</button>
 
 </form>
 
+</div>
 </div>
 
 <?php MostrarFooter(); ?>

@@ -1,23 +1,39 @@
 <?php
 include_once $_SERVER["DOCUMENT_ROOT"] . "/Examen_Grupo05_Miercoles/Models/Conexion.php";
 
-class CasasModel {
+class CasasModel
+{
 
-    public function ConsultarCasas() {
+    private $error;
+
+    public function ConsultarCasas()
+    {
         $conn = OpenDatabase();
         return $conn->query("CALL ConsultarCasas()");
     }
 
-    public function ObtenerDisponibles() {
+    public function ObtenerDisponibles()
+    {
         $conn = OpenDatabase();
         return $conn->query("SELECT * FROM CasasSistema WHERE UsuarioAlquiler IS NULL");
     }
 
-    public function Alquilar($id, $usuario) {
+    public function Alquilar($id, $usuario)
+    {
         $conn = OpenDatabase();
         $stmt = $conn->prepare("CALL AlquilarCasa(?,?)");
         $stmt->bind_param("is", $id, $usuario);
-        return $stmt->execute();
+        $result = $stmt->execute();
+        if (!$result) {
+            $this->error = $stmt->error;
+        }
+        $stmt->close();
+        $conn->close();
+        return $result;
+    }
+
+    public function getError()
+    {
+        return $this->error;
     }
 }
-?>

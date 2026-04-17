@@ -1,7 +1,9 @@
 body {
-    font-family: Arial;
-    background: #f4f6f9;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     margin: 0;
+    min-height: 100vh;
+    color: #333;
 }
 
 .header {
@@ -25,11 +27,13 @@ body {
 }
 
 .container {
-    width: 80%;
+    width: 90%;
+    max-width: 1200px;
     margin: 30px auto;
     background: white;
     padding: 20px;
-    border-radius: 10px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
 }
 
 table {
@@ -38,27 +42,107 @@ table {
 }
 
 th {
-    background: #1e293b;
+    background: linear-gradient(135deg, #0d6efd 0%, #6610f2 100%);
     color: white;
-    padding: 10px;
+    padding: 15px;
+    text-align: left;
+    font-weight: 600;
 }
 
 td {
-    padding: 10px;
-    border-bottom: 1px solid #ccc;
+    padding: 15px;
+    border-bottom: 1px solid #e9ecef;
 }
 
 button {
-    background: #2563eb;
+    background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
     color: white;
-    padding: 10px;
+    padding: 12px 20px;
     border: none;
+    border-radius: 8px;
     cursor: pointer;
+    font-size: 16px;
+    transition: transform 0.2s;
+}
+
+button:hover {
+    transform: translateY(-2px);
 }
 
 .footer {
     text-align: center;
-    padding: 10px;
+    padding: 20px;
     background: #1e293b;
     color: white;
+    margin-top: 50px;
+}
+
+body {
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+}
+
+.container-box {
+    background: rgba(255, 255, 255, 0.95);
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0px 8px 25px rgba(0,0,0,0.15);
+    margin-top: 30px;
+    backdrop-filter: blur(10px);
+}
+
+h2 {
+    font-weight: 700;
+    color: #495057;
+    margin-bottom: 20px;
+}
+
+.table thead {
+    background: linear-gradient(135deg, #0d6efd 0%, #6610f2 100%);
+    color: white;
+}
+
+.table tbody tr:hover {
+    background-color: #f8f9fa;
+}
+
+.badge {
+    font-size: 0.85em;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #007bff 0%, #6610f2 100%);
+    border: none;
+    transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+    background: linear-gradient(135deg, #0056b3 0%, #5a0fc8 100%);
+    transform: translateY(-2px);
+}
+
+.btn-secondary {
+    background: linear-gradient(135deg, #6c757d 0%, #495057 100%);
+    border: none;
+    transition: all 0.3s ease;
+}
+
+.btn-secondary:hover {
+    background: linear-gradient(135deg, #545b62 0%, #343a40 100%);
+    transform: translateY(-2px);
+}
+
+.navbar {
+    background: linear-gradient(135deg, #343a40 0%, #495057 100%) !important;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+.form-select, .form-control {
+    border-radius: 10px;
+    border: 2px solid #e9ecef;
+    transition: border-color 0.3s;
+}
+
+.form-select:focus, .form-control:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
 }
