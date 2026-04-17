@@ -30,7 +30,7 @@ function MostrarNav()
 function MostrarHeader()
 {
     echo '
-    <nav class="navbar navbar-dark bg-dark shadow">
+    <nav class="navbar navbar-dark shadow" style="background-color: #4DBCDB;">
         <div class="container d-flex justify-content-between">
 
             <!-- TÍTULO (CLICKEABLE) -->
@@ -43,7 +43,7 @@ function MostrarHeader()
                 <a href="../vHome/consulta.php" class="btn btn-outline-light me-2">
                     <i class="fas fa-list"></i> Consulta
                 </a>
-                <a href="../vHome/alquiler.php" class="btn btn-primary me-2">
+                <a href="../vHome/alquiler.php" class="btn btn-success me-2">
                     <i class="fas fa-key"></i> Alquilar
                 </a>
                 <a href="../vHome/eliminar.php" class="btn btn-danger">
@@ -58,7 +58,7 @@ function MostrarHeader()
 function MostrarFooter()
 {
     echo '
-    <footer class="bg-dark text-white text-center p-3 mt-5">
+    <footer class="text-white text-center p-3 mt-5" style="background-color: #4DBCDB;">
         Examen Grupo 05 - Sistema de Casas
     </footer>';
 }
